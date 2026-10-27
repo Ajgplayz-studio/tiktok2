@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cmd</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0c0c0c; color: #cccccc; font-family: "Consolas", "Courier New", monospace; font-size: 15px; padding: 12px; min-height: 100vh; cursor: text; }
+  #output { white-space: pre-wrap; word-break: break-word; }
+  #output div { line-height: 1.5; }
+  #input-line { display: flex; align-items: center; }
+  #input-line span { color: #ffffff; margin-right: 6px; }
+  #cmd { flex: 1; background: transparent; border: none; outline: none; color: #cccccc; font: inherit; }
+</style>
+</head>
+<body>
+<div id="output"></div>
+<div id="input-line"><span>&gt;</span><input id="cmd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus></div>
+<script>
+  const output = document.getElementById("output");
+  const input = document.getElementById("cmd");
+  function print(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    output.appendChild(div);
+  }
+  print("TIKTOK2 CMD");
+  print("");
+  print("Available commands:");
+  print("  code - shows the code");
+  print("  open - opens fufj.my.canva.site/tiktok2");
+  print("");
+  document.body.addEventListener("click", () => input.focus());
+  input.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+    const raw = input.value;
+    const cmd = raw.trim().toLowerCase();
+    print("> " + raw);
+    if (cmd === "code") {
+      print("TK1234");
+    } else if (cmd === "open") {
+      print("Opening fufj.my.canva.site/tiktok2...");
+      window.location.href = "https://fufj.my.canva.site/tiktok2";
+    } else if (cmd !== "") {
+      print("Unknown command: " + raw);
+    }
+    input.value = "";
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+</script>
+</body>
+</html>
